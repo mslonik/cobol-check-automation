@@ -13,10 +13,17 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '11'
-      - name: Run COBOL Check
+      - name: Setup Mainframe Environment and Upload COBOL Check
         env:
           ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
           ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
         run: |
           chmod +x ./zowe_operations.sh
           ./zowe_operations.sh
+      - name: Run COBOL Check on Mainframe
+        env:
+          ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
+          ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
+        run: |
+          chmod +x ./mainframe_operations.sh
+          ./mainframe_operations.sh
