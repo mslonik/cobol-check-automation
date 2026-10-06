@@ -6,7 +6,7 @@ export JAVA_HOME=/usr/lpp/java/J8.0_64
 export PATH=$PATH:/usr/lpp/zowe/cli/node/bin
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-COBOLCHECK_DIR="${SCRIPT_DIR}/../../COBOLcheck"
+COBOLCHECK_DIR="${COBOLCHECK_DIR:-${SCRIPT_DIR}/../../COBOLcheck}"
 COBOLCHECK_JAR="${COBOLCHECK_DIR}/bin/cobol-check-0.2.19.jar"
 GENERATED_DIR="${COBOLCHECK_DIR}/testruns"
 
@@ -28,7 +28,7 @@ fi
 # Check Java availability
 java -version
 # Set ZOWE_USERNAME
-ZOWE_USERNAME="Z81114" # Replace with the actual username
+: "${ZOWE_USERNAME:?ZOWE_USERNAME must be set}"
 
 if ! chmod +x "$COBOLCHECK_DIR/scripts/linux_gnucobol_run_tests"; then
   echo "Could not make the GnuCOBOL test runner executable" >&2
