@@ -21,7 +21,7 @@ jobs:
       - name: Setup Mainframe Environment and Upload COBOL Check
         env:
           ZOWE_HOST: ${{ secrets.ZOWE_HOST }}
-          ZOWE_PORT: ${{ secrets.ZOWE_PORT || '443' }}
+          ZOWE_PORT: ${{ secrets.ZOWE_PORT || '10443' }}
           ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
           ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
           COBOLCHECK_DIR: ${{ github.workspace }}/COBOLcheck
@@ -31,7 +31,7 @@ jobs:
       - name: Run COBOL Check on Mainframe
         env:
           ZOWE_HOST: ${{ secrets.ZOWE_HOST }}
-          ZOWE_PORT: ${{ secrets.ZOWE_PORT || '443' }}
+          ZOWE_PORT: ${{ secrets.ZOWE_PORT || '10443' }}
           ZOWE_USERNAME: ${{ secrets.ZOWE_USERNAME }}
           ZOWE_PASSWORD: ${{ secrets.ZOWE_PASSWORD }}
           COBOLCHECK_DIR: ${{ github.workspace }}/COBOLcheck
