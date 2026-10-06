@@ -9,6 +9,7 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 COBOLCHECK_DIR="${COBOLCHECK_DIR:-${SCRIPT_DIR}/../../COBOLcheck}"
 COBOLCHECK_JAR="${COBOLCHECK_DIR}/bin/cobol-check-0.2.19.jar"
 GENERATED_DIR="${COBOLCHECK_DIR}/testruns"
+JCL_DIR="${SCRIPT_DIR}/.github/workflows/JCL"
 
 if [[ ! -d "$COBOLCHECK_DIR" ]]; then
   echo "COBOLcheck directory not found: $COBOLCHECK_DIR" >&2
@@ -68,14 +69,14 @@ run_cobolcheck() {
     echo "Generated file not found: $GENERATED_DIR/CC##99.CBL"
   fi
 
-  if [ -f "${program}.JCL" ]; then
-    if cp "${program}.JCL" "//'${ZOWE_USERNAME}.JCL($program)'"; then
+  if [ -f "${JCL_DIR}/${program}.JCL" ]; then
+    if cp "${JCL_DIR}/${program}.JCL" "//'${ZOWE_USERNAME}.JCL($program)'"; then
       echo "Copied ${program}.JCL to ${ZOWE_USERNAME}.JCL($program)"
     else
       echo "Failed to copy ${program}.JCL to ${ZOWE_USERNAME}.JCL($program)"
     fi
   else
-    echo "${program}.JCL not found in $COBOLCHECK_DIR"
+    echo "${program}.JCL not found in $JCL_DIR"
   fi
 }
 
