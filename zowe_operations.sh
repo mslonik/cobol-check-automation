@@ -29,7 +29,7 @@ COBOLCHECK_DIR="$(cd -- "$COBOLCHECK_DIR" && pwd)"
 
 LOWERCASE_USERNAME="$(printf '%s' "$ZOWE_USERNAME" | tr '[:upper:]' '[:lower:]')"
 REMOTE_DIR="/z/${LOWERCASE_USERNAME}/cobolcheck"
-ZOWE_CONNECTION=(--host "$ZOWE_HOST" --port "$ZOWE_PORT" --user "$ZOWE_USERNAME" --password "$ZOWE_PASSWORD")
+ZOWE_CONNECTION=(--host "$ZOWE_HOST" --port "$ZOWE_PORT" --user "$ZOWE_USERNAME" --password "$ZOWE_PASSWORD" --ru=false)
 
 if ! zowe zos-files list uss-files "$REMOTE_DIR" "${ZOWE_CONNECTION[@]}" >/dev/null 2>&1; then
   echo "Directory does not exist. Creating it..."
